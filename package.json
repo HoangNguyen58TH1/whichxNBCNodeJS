@@ -1,7 +1,7 @@
 {
   "name": "whichnbc",
   "version": "1.0.0",
-  "description": "",
+  "description": "demo module Whichx in nodeJS handling NBC",
   "main": "index.js",
   "dependencies": {
     "image-downloader": "^4.0.1",
@@ -14,5 +14,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "HoangNguyen",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoangNguyen58TH1/whichxNBCNodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HoangNguyen58TH1/whichxNBCNodeJS/issues"
+  },
+  "homepage": "https://github.com/HoangNguyen58TH1/whichxNBCNodeJS#readme"
 }

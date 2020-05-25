@@ -1,17 +1,42 @@
 var mysql = require("mysql");
 var config = require("./config.js");
-var articles = require("./demoDantri.js");
-// import {articles} from './demoDantri.js'
+var dantri = require("./dantri.js");
 var connection = mysql.createConnection(config);
 
-console.log('insert.js');
-console.log('test: ', articles);
+connection.connect();
+async function tmp() {
+  let articles = await dantri();
+  let articlesPromise = articles.map(article => create(article));
+  let results = await Promise.all(articlesPromise);
+  // let articlesTitle = articles.map(article => article.title);
+  // let articlesUrl = articles.map(article => article.url);
+  // articlesPromise = articles.map(article => createArticle(article));
+  // Promise.all(articlesPromise)
+  // createArticle()
 
-// // câu lệnh insert
-// var sql = `INSERT INTO todos1(title,completed)
-//            VALUES('Học cách insert dữ liệu vào database',true)`;
+  // câu lệnh insert
+  // for (let i = 0; i < articles.length; i++) {
+  //   // var sql = `INSERT INTO todo2(title,completed)
+  //   //             VALUES("${articlesTitle[i]}",true)`;
+  //   var sql = "insert into todos3 set ?"
+  //   connection.query(sql, [articles[i]], (err, result) => {});
+  // }
+  // connection.end();
+}
 
-// // thực thi câu lệnh insert
-// connection.query(sql);
+function create(article) {
+  return new Promise((resolve, reject) => {
 
-// connection.end();
+    var sql = "insert into todos3 set ?";
+
+    connection.query(sql, [article], (err, result) => {
+      if (err) reject(err);
+      resolve(result);
+      // connection.end();
+
+    })
+  })
+}
+tmp()
+
+// thực thi câu lệnh insert
