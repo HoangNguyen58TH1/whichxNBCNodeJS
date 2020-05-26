@@ -17,5 +17,3 @@
 
 // objCar = new Car('Exciter150')
 // console.log('name car: ', objCar.nameCar)
-
-var
