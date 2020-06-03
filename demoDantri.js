@@ -5,8 +5,7 @@ var WhichX = require("whichx");
     // Mở trình duyệt mới và tới trang của kenh14
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
-    // await page.goto('https://tuoitre.vn/giao-duc.htm');
-    await page.goto('https://tuoitre.vn/kinh-doanh.htm');
+    await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
 
     // Chạy đoạn JavaScript trong hàm này, đưa kết quả vào biến article
     const articles = await page.evaluate(() => {
@@ -15,14 +14,14 @@ var WhichX = require("whichx");
         let titleLinks = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
         titleLinks = [...titleLinks];
         let articles = titleLinks.map(link => ({
-            title: link.getAttribute('title'),
-            url: link.getAttribute('href'),
+            tentintuc: link.getAttribute('title'),
+            // url: link.getAttribute('href'),
         }));
         return articles;
     });
 
     // In ra kết quả và đóng trình duyệt
-    console.log(articles);
+    // console.log(articles);
     await browser.close();
 
     //whichx
@@ -34,11 +33,37 @@ var WhichX = require("whichx");
     category.addData("giáo dục", "học sinh cổng trường trường trường học chủ tịch hiệu trưởng đại học THPT THCS tốt nghiệp điểm thi thi thử môn lãnh đạo xử lý trách nhiệm phụ huynh bằng khen cấp trên");
     category.addData("kinh doanh", "thu giữ xử lý bảo hiểm thị trường tập đoàn thuế giàu thiệt hại tỷ USD xuất khẩu bảo hộ y tế triệu triệu đồng tiêu dùng hàng hoá giảm giảm giá vốn đồng công ty thủ tướng doanh nghiệp đầu tư suy thoái sòng bài quản lý hoạt động kinh doanh dịch vụ mua bán giá");
 
+    var idtheloai;
+    var articlesArray = [];
     for (let i = 0; i < articles.length; i++) {
-      var News = category.classify(articles[i].title);
-      console.log(articles[i].title);
+      var News = category.classify(articles[i].tentintuc);
+      console.log(articles[i].tentintuc);
       console.log("It is: " + i + " " + News);
+
+      if (News == 'thể thao') {
+        idtheloai = 1
+      } else if(News == 'giáo dục'){
+          idtheloai = 2
+      } else if(News == 'kinh doanh'){
+          idtheloai = 3
+      }
+      console.log('idtheloai: ', idtheloai);
+
+      var articlesObject = {
+          tentintuc: articles[i].tentintuc,
+          idtheloai: idtheloai
+      }
+    //   console.log('articlesObject: ', articlesObject);
+    //   articlesArray = Object.assign(articlesArray, articlesObject);
+    articlesArray.push(articlesObject)
+
     }
+    console.log('test: ', articlesArray);
+    console.log(typeof articlesArray);
+    // console.log('test: ', articles);
+    // console.log(typeof articles);
+    // console.log(typeof idtheloai);
+
 
 })();
 

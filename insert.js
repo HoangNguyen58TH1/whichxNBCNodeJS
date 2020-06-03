@@ -5,8 +5,8 @@ var connection = mysql.createConnection(config);
 
 connection.connect();
 async function tmp() {
-  let articles = await dantri();
-  let articlesPromise = articles.map(article => create(article));
+  let articlesArray = await dantri();
+  let articlesPromise = articlesArray.map(article => create(article));
   let results = await Promise.all(articlesPromise);
   // let articlesTitle = articles.map(article => article.title);
   // let articlesUrl = articles.map(article => article.url);
@@ -27,7 +27,7 @@ async function tmp() {
 function create(article) {
   return new Promise((resolve, reject) => {
 
-    var sql = "insert into todos3 set ?";
+    var sql = "insert into tintuc set ?";
 
     connection.query(sql, [article], (err, result) => {
       if (err) reject(err);
