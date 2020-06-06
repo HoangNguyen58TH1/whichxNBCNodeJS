@@ -6,8 +6,8 @@ module.exports = (async() => {
     const page = await browser.newPage();
     // await page.goto('https://tuoitre.vn/phap-luat.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://tuoitre.vn/kinh-doanh.htm', {waitUntil: 'load', timeout: 0});
-    await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-    // await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
+    // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
+    await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
@@ -80,11 +80,11 @@ module.exports = (async() => {
       }
       console.log('idtheloai: ', idtheloai);
 
-      var articlesOject = {
+      var articlesObject = {
           tentintuc: articles[i].tentintuc,
           idtheloai: idtheloai
       }
-      articlesArray.push(articlesOject)
+      articlesArray.push(articlesObject)
     }
 
     console.log('test: ', articlesArray);

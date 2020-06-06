@@ -12,9 +12,13 @@ con.connect(function(err) {
   console.log("Connected!");
   var sql = "INSERT INTO theloai (tentheloai) VALUES ?";
   var values = [
+    ['pháp luật'],
+    ['kinh doanh'],
+    ['công nghệ'],
+    ['xe'],
     ['thể thao'],
     ['giáo dục'],
-    ['kinh doanh'],
+    ['sức khoẻ'],
   ];
   con.query(sql, [values], function (err, result) {
     if (err) throw err;

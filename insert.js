@@ -1,11 +1,11 @@
 var mysql = require("mysql");
 var config = require("./config.js");
-var dantri = require("./dantri.js");
+var tintuc = require("./tintuc.js");
 var connection = mysql.createConnection(config);
 
 connection.connect();
 async function tmp() {
-  let articlesArray = await dantri();
+  let articlesArray = await tintuc();
   let articlesPromise = articlesArray.map(article => create(article));
   let results = await Promise.all(articlesPromise);
   // let articlesTitle = articles.map(article => article.title);
