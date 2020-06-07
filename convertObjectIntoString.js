@@ -18,19 +18,27 @@ var array = [
     content: 'Cơ quan chức năng cũng xác định biển số 51A-229.62 được gắn trên xe này là biển số giả và đang tiếp tục điều tra làm rõ.'
   }
 ]
-var arrayContent = [];
-for(let obj of array){
-  // console.log(obj);
-  var objContent = Object.values(obj)
-  // console.log(objContent); //array
-  // console.log(typeof objContent);
-  // Array.isArray(obj) ? console.log('true') : console.log('false');
-  arrayContent = arrayContent.concat(objContent)
-}
+// var arrayContent = [];
+// for(let obj of array){
+//   // console.log(obj);
+//   let objContent = Object.values(obj)
+//   // console.log(objContent); //array
+//   // console.log(typeof objContent);
+//   // Array.isArray(obj) ? console.log('true') : console.log('false');
+//   arrayContent = arrayContent.concat(objContent)
+// }
 // console.log('arrayContent :', arrayContent);
 // console.log('arrayContent :', typeof arrayContent);
-var stringContent = arrayContent.join('<br/> ')
-// stringContent.replace('/n','')
-console.log(stringContent);
-// console.log(typeof stringContent);
+// // var stringContent = arrayContent.join('<br/> ')
+// // console.log(stringContent);
+// // console.log(typeof stringContent);
 
+var arrayContent = array.map((arrayCurrent, index, array) => {
+  return arrayCurrent.content
+})
+console.log(arrayContent);
+
+//
+// const str = new String('hoangNguyen')
+//  console.log(str);
+//  console.log(typeof str);

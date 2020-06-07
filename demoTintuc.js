@@ -23,15 +23,17 @@ var WhichX = require("whichx");
         let titleLinks = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
         titleLinks = [...titleLinks];
         let articles = titleLinks.map(link => ({
-            tentintuc: link.getAttribute('title'),
-            // url: link.getAttribute('href'),
+            // tentintuc: link.getAttribute('title'),
+            url: link.getAttribute('href'),
         }));
         return articles;
     });
 
     // In ra kết quả và đóng trình duyệt
+    // console.log(articles);
+    // console.log(articles[0].tentintuc);
     console.log(articles);
-    console.log(articles[0].tentintuc);
+    console.log(articles[0].url);
     await browser.close();
 
     //whichx

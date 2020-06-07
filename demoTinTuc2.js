@@ -8,9 +8,9 @@ var WhichX = require("whichx");
     // await page.goto('https://tuoitre.vn/phap-luat.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://tuoitre.vn/kinh-doanh.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-    await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
+    // await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-    // await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
+    await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
     // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
 
     // Chạy đoạn JavaScript trong hàm này, đưa kết quả vào biến article1 và article2
@@ -47,6 +47,7 @@ var WhichX = require("whichx");
     console.log('articles3: ', articles3);
 
     var arrayTitle = []
+    var arrayImageUrl = []
     var arrayDescription = []
     var arrayContentTotal = []
     for (let articles of articles3) {
@@ -56,6 +57,14 @@ var WhichX = require("whichx");
       let titleTintuc = await page.evaluate(() => {
         let titleTintuc = document.getElementsByClassName("article-title")[0].innerText;
         return titleTintuc;
+      });
+
+      //imageUrl
+      let imageUrlTintuc = await page.evaluate(() => {
+        let checkElement = document.getElementsByClassName("lightbox-content")[0];
+        let imageUrlTintuc;
+        (checkElement != undefined) ? (imageUrlTintuc = checkElement.getAttribute('src')) : (imageUrlTintuc = null)
+        return imageUrlTintuc;
       });
 
       //description
@@ -81,9 +90,10 @@ var WhichX = require("whichx");
       //log
       console.log("..............................");
       console.log(titleTintuc);
+      console.log(imageUrlTintuc);
       console.log(descriptionTintuc);
 
-      //handling content - convert array into string
+      //handling content - convert array into string - cach1 (con cach2 nua) - cach chi dung 3 row thay vi 5 row.
       console.log(contentTintuc);
       console.log(typeof contentTintuc);
       var arrayContent = [];
@@ -96,6 +106,7 @@ var WhichX = require("whichx");
 
       //add element into array
       arrayTitle.push(titleTintuc) // add tung cai string vào
+      arrayImageUrl.push(imageUrlTintuc) // add tung cai string url vào
       arrayDescription.push(descriptionTintuc) // add tung cai string vào
       arrayContentTotal.push(stringsContentTinTuc) // khác 2 cái trên.
     }
@@ -103,6 +114,8 @@ var WhichX = require("whichx");
     // console.log(typeof titleTintuc); //string
     console.log('TITLE TOTAL: ', arrayTitle);
     console.log(typeof arrayTitle);
+    console.log('IMAGE URL TOTAL: ', arrayImageUrl);
+    console.log(typeof arrayImageUrl);
     console.log('DESCRIPTION TOTAL:', arrayDescription);
     console.log(typeof arrayDescription);
     console.log('CONTENT TOTAL:', arrayContentTotal);
@@ -168,6 +181,7 @@ var WhichX = require("whichx");
           // description: articles2[i].description,
           // idtheloai: idtheloai
           title: arrayTitle[i],
+          imageurl: arrayImageUrl[i],
           description: arrayDescription[i],
           content: arrayContentTotal[i],
           idtheloai: idtheloai
