@@ -52,7 +52,8 @@ var WhichX = require("whichx");
     // var arrayContentTotal = []
     // for (let articles of articles3) {
       // await page.goto('https://tuoitre.vn/thanh-pho-bac-kinh-gay-tranh-cai-khi-dinh-phat-nguoi-che-bai-thuoc-dong-y-20200607150838489.htm', {waitUntil: 'load', timeout: 0});
-      await page.goto('https://tuoitre.vn/10-y-bac-si-mo-khan-cap-cuu-song-benh-nhan-bi-xa-beng-xuyen-nguc-20200604211259787.htm', {waitUntil: 'load', timeout: 0});
+      // await page.goto('https://tuoitre.vn/10-y-bac-si-mo-khan-cap-cuu-song-benh-nhan-bi-xa-beng-xuyen-nguc-20200604211259787.htm', {waitUntil: 'load', timeout: 0});
+      await page.goto('https://tuoitre.vn/oto-dang-chay-thi-boc-chay-ngun-ngut-nghi-bi-rom-cuon-duoi-gam-20200531182326884.htm', {waitUntil: 'load', timeout: 0});
 
       //title
       // let titleTintuc = await page.evaluate(() => {

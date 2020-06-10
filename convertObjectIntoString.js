@@ -33,10 +33,14 @@ var array = [
 // // console.log(stringContent);
 // // console.log(typeof stringContent);
 
-var arrayContent = array.map((arrayCurrent, index, array) => {
+var arrayContent = array.map((arrayCurrent) => {
   return arrayCurrent.content
 })
 console.log(arrayContent);
+var string = arrayContent.join('<br>')
+console.log(string);
+// console.log(typeof arrayContent);
+// console.log(Array.isArray(arrayContent));
 
 //
 // const str = new String('hoangNguyen')

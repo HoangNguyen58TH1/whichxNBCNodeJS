@@ -37,7 +37,10 @@ var WhichX = require("whichx");
 
     //3 - crawl url tintuc
     const articles3 = await page.evaluate(() => {
+      //loaitin con lai
       let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
+      //thethao
+      // let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.txt > h3 > a');
       urlTintuc = [...urlTintuc];
       let articles3 = urlTintuc.map(link => ({
         url: link.getAttribute('href')
@@ -46,6 +49,18 @@ var WhichX = require("whichx");
     })
     console.log('articles3: ', articles3);
 
+    //convert urlInitial into TieuDeKhongDau
+    var arrayUrl = articles3.map((arrayCurrent) => {
+      let urlInitial = arrayCurrent.url
+      let findIndexLastCharacter = urlInitial.lastIndexOf('-')
+      urlInitial = urlInitial.slice(1, findIndexLastCharacter)
+      // console.log('url Initial: ', urlInitial);
+      // console.log('----------------------');
+      return urlInitial
+    })
+    console.log(arrayUrl);
+
+    //
     var arrayTitle = []
     var arrayImageUrl = []
     var arrayDescription = []
@@ -94,14 +109,12 @@ var WhichX = require("whichx");
       console.log(descriptionTintuc);
 
       //handling content - convert array into string - cach1 (con cach2 nua) - cach chi dung 3 row thay vi 5 row.
-      console.log(contentTintuc);
-      console.log(typeof contentTintuc);
-      var arrayContent = [];
-      for(let obj of contentTintuc){
-        var objContent = Object.values(obj);
-        arrayContent = arrayContent.concat(objContent)
-      }
-      var stringsContentTinTuc = arrayContent.join('<br/> ');
+      // console.log(contentTintuc);
+      // console.log(typeof contentTintuc);
+      var arrayContent = contentTintuc.map((arrayCurrent) => {
+        return arrayCurrent.content
+      })
+      var stringsContentTinTuc = arrayContent.join('<br/><br/> ');
       console.log(stringsContentTinTuc);
 
       //add element into array
@@ -116,6 +129,8 @@ var WhichX = require("whichx");
     console.log(typeof arrayTitle);
     console.log('IMAGE URL TOTAL: ', arrayImageUrl);
     console.log(typeof arrayImageUrl);
+    console.log('IMAGE URL TOTAL: ', arrayUrl);
+    console.log(typeof arrayUrl);
     console.log('DESCRIPTION TOTAL:', arrayDescription);
     console.log(typeof arrayDescription);
     console.log('CONTENT TOTAL:', arrayContentTotal);
@@ -176,15 +191,19 @@ var WhichX = require("whichx");
       console.log('idtheloai: ', idtheloai);
 
       var articlesObject = {
-          // title: articles[i].title,
-          // urlImage: articles[i].urlImage,
-          // description: articles2[i].description,
-          // idtheloai: idtheloai
-          title: arrayTitle[i],
-          imageurl: arrayImageUrl[i],
-          description: arrayDescription[i],
-          content: arrayContentTotal[i],
-          idtheloai: idtheloai
+      // title: arrayTitle[i],
+      // imageurl: arrayImageUrl[i],
+      // description: arrayDescription[i],
+      // content: arrayContentTotal[i],
+      // idtheloai: idtheloai,
+      idLoaiTin: idtheloai,
+      TieuDe: arrayTitle[i],
+      TieuDeKhongDau: arrayUrl[i],
+      TomTat: arrayDescription[i],
+      NoiDung: arrayContentTotal[i],
+      Hinh: arrayImageUrl[i],
+      NoiBat: 1,
+      SoLuotXem: 0,
       }
     articlesArray.push(articlesObject)
     }
