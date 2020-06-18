@@ -10,4 +10,8 @@ arrayMergeTotal = [4,2,4,2,4,4,4,4,4,4,4,4,2,2,4]
 arrayMergeTotal = [1,7,4,7,4,7,6,2,1,7,7,7,6,5,7]
 //congnghe --- 20%
 arrayMergeTotal = [5,7,1,2,1,3,6,7,1,2,2,3,2,3,1,7,4,4,3,2]
-//giaoduc --- %
+//giaoduc --- 40%
+arrayMergeTotal = [1,5,6,7,6,3,3,6,2,6]
+//giaoduc --- 45,5%
+arrayMergeTotal = [1,5,6,7,6,3,3,6,2,6,6]
+//

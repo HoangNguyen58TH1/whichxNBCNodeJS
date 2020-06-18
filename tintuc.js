@@ -11,7 +11,7 @@ module.exports = (async () => {
   // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
+  await page.goto('https://tuoitre.vn/giao-duc.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
 
   // Chạy đoạn JavaScript trong hàm này, đưa kết quả vào biến article1 và article2
@@ -42,7 +42,7 @@ module.exports = (async () => {
     let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
     //thethao
     // let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.txt > h3 > a');
-    urlTintuc = [...urlTintuc].slice(0,3);
+    urlTintuc = [...urlTintuc].slice(4,15);
     // urlTintuc = [...urlTintuc];
     let articles3 = urlTintuc.map(link => ({
       url: link.getAttribute('href')
@@ -63,33 +63,46 @@ module.exports = (async () => {
   console.log(arrayUrl);
 
   //
-  var arrayTitle = []
-  var arrayImageUrl = []
-  var arrayDescription = []
-  var arrayContentTotal = []
+  var arrayTitle = [],  arrayImageUrl = [], arrayDescription = [], arrayContentTotal = [];
   for (let articles of articles3) {
     await page.goto('https://tuoitre.vn/' + articles.url, { waitUntil: 'load', timeout: 0 });
 
     //title
     let titleTintuc = await page.evaluate(() => {
-      let titleTintuc = document.getElementsByClassName("article-title")[0].innerText;
+      // let titleTintuc = document.getElementsByClassName("article-title")[0].innerText;
+      // return titleTintuc;
+
+      let checkElement = document.getElementsByClassName("article-title")[0];
+      let titleTintuc;
+      (checkElement != undefined) ? (titleTintuc = checkElement.innerText) : ( titleTintuc = '' )
       return titleTintuc;
+      // let checkElement = document.getElementsByClassName("article-title")[0];
+      // let titleTintuc;
+      // if (checkElement != undefined) {
+      //   titleTintuc = checkElement.innerText;
+      // }
+      // else {
+      //   // continue;
+      //   break;
+      // }
+      // return titleTintuc;
     });
 
     //imageUrl
     let imageUrlTintuc = await page.evaluate(() => {
       let checkElement = document.getElementsByClassName("lightbox-content")[0];
       let imageUrlTintuc;
-      (checkElement != undefined) ? (imageUrlTintuc = checkElement.getAttribute('src')) : (imageUrlTintuc = null)
+      (checkElement != undefined) ? (imageUrlTintuc = checkElement.getAttribute('src')) : (imageUrlTintuc = '')
       return imageUrlTintuc;
     });
 
     //description
     let descriptionTintuc = await page.evaluate(() => {
-      let descriptionTintuc = document.getElementsByClassName("sapo")[0].innerText;
-      // .innerHTML;
-      // .getElementsByClassName("content fck")[0]
-      // .innerHTML.replace(/\<br\>/g, "");
+      // let descriptionTintuc = document.getElementsByClassName("sapo")[0].innerText;
+      // return descriptionTintuc;
+      let checkElement = document.getElementsByClassName("sapo")[0];
+      let descriptionTintuc;
+      (checkElement != undefined) ? (descriptionTintuc = checkElement.innerText) : (descriptionTintuc = '')
       return descriptionTintuc;
     });
 
@@ -132,7 +145,7 @@ module.exports = (async () => {
   console.log(typeof arrayTitle);
   console.log('IMAGE URL TOTAL: ', arrayImageUrl);
   console.log(typeof arrayImageUrl);
-  console.log('IMAGE URL TOTAL: ', arrayUrl);
+  console.log('SEARCH URL TOTAL: ', arrayUrl);
   console.log(typeof arrayUrl);
   console.log('DESCRIPTION TOTAL:', arrayDescription);
   console.log(typeof arrayDescription);
@@ -183,7 +196,7 @@ module.exports = (async () => {
         idtheloai = 5;//5/15 33,3% - 8/15 53%
         break;
       case 'giáo dục':
-        idtheloai = 6;//4/15 27% - 11/15 73% --
+        idtheloai = 6;//4/15 27% - 11/15 73% -----
         break;
       case 'sức khoẻ':
         idtheloai = 7;//12/15 46,7% -----
@@ -215,8 +228,8 @@ module.exports = (async () => {
   var fs = require('fs')
 
   let totalArray = articlesArray.map(e => e.idLoaiTin)
-  fs.appendFile('filenew.js', 'arrayMergeTotal = [' + totalArray + ']\n', function(err){
-    if(err) throw err;
+  fs.appendFile('filenew.js', 'arrayMergeTotal = [' + totalArray + ']\n', function (err) {
+    if (err) throw err;
     console.log('Save');
   })
 
