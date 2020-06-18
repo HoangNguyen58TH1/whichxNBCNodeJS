@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 var WhichX = require("whichx");
+var fs = require('fs');
 
 module.exports = (async () => {
   // Mở trình duyệt mới và tới trang của tintuc
@@ -8,9 +9,9 @@ module.exports = (async () => {
   // await page.goto('https://tuoitre.vn/phap-luat.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/kinh-doanh.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
+  // await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  // await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
+  await page.goto('https://tuoitre.vn/giao-duc.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
 
   // Chạy đoạn JavaScript trong hàm này, đưa kết quả vào biến article1 và article2
@@ -41,7 +42,8 @@ module.exports = (async () => {
     let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
     //thethao
     // let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.txt > h3 > a');
-    urlTintuc = [...urlTintuc];
+    urlTintuc = [...urlTintuc].slice(0,3);
+    // urlTintuc = [...urlTintuc];
     let articles3 = urlTintuc.map(link => ({
       url: link.getAttribute('href')
     }))
@@ -97,8 +99,9 @@ module.exports = (async () => {
       let contentTintuc = document.querySelectorAll('div.content.fck > p');
       contentTintuc = [...contentTintuc];
       let content = contentTintuc.map(link => ({
-        content: link.innerText
+        content: link.innerText,
       }));
+      // if(link.innerText == undefined){ link.innerText = '' }
       return content;
     });
 
@@ -165,16 +168,16 @@ module.exports = (async () => {
     //set idtheloai
     switch (News) {
       case 'pháp luật':
-        idtheloai = 1;//10/15 66,7% --
+        idtheloai = 1;//10/15 66,7% -----
         break;
       case 'kinh doanh':
-        idtheloai = 2;//4/17 24% --
+        idtheloai = 2;//4/17 35,5% -----
         break;
       case 'công nghệ':
-        idtheloai = 3;//9/20 45% - 12/20 60% --
+        idtheloai = 3;//9/20 20% -----
         break;
       case 'xe':
-        idtheloai = 4;//12/15 80% --
+        idtheloai = 4;//12/15 73,3% -----
         break;
       case 'thể thao':
         idtheloai = 5;//5/15 33,3% - 8/15 53%
@@ -183,7 +186,7 @@ module.exports = (async () => {
         idtheloai = 6;//4/15 27% - 11/15 73% --
         break;
       case 'sức khoẻ':
-        idtheloai = 7;//12/15 80% --
+        idtheloai = 7;//12/15 46,7% -----
         break;
       default:
         console.log('chet con me m deeeeeeeeeeee');
@@ -208,6 +211,14 @@ module.exports = (async () => {
     articlesArray.push(articlesObject)
   }
   console.log('---testFinal: ', articlesArray);
+
+  var fs = require('fs')
+
+  let totalArray = articlesArray.map(e => e.idLoaiTin)
+  fs.appendFile('filenew.js', 'arrayMergeTotal = [' + totalArray + ']\n', function(err){
+    if(err) throw err;
+    console.log('Save');
+  })
 
   return articlesArray;
 });

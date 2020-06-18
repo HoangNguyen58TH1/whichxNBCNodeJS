@@ -4,7 +4,7 @@ var tintuc = require("./tintuc.js");
 var connection = mysql.createConnection(config);
 
 connection.connect();
-async function tmp() {
+async function saveDB() {
   let articlesArray = await tintuc();
   let articlesPromise = articlesArray.map(article => create(article));
   let results = await Promise.all(articlesPromise);
@@ -37,6 +37,6 @@ function create(article) {
     })
   })
 }
-tmp()
+saveDB()
 
 // thực thi câu lệnh insert

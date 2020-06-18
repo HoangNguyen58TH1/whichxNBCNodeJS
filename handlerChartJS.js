@@ -1,13 +1,16 @@
 // import arr from './test1'
 // var arr = require('./test1.js')
-// let array = [
-//   { idtheloai: 1 }, { idtheloai: 5 }, { idtheloai: 1 },
-//   { idtheloai: 1 }, { idtheloai: 1 }, { idtheloai: 7 },
-//   { idtheloai: 1 }, { idtheloai: 1 }, { idtheloai: 3 },
-//   { idtheloai: 1 }, { idtheloai: 3 }, { idtheloai: 1 },
-//   { idtheloai: 5 }, { idtheloai: 5 }, { idtheloai: 6 }
-// ]
-// let arr = [ 1, 5, 1, 1, 1, 7, 1, 1, 3, 1, 3, 1, 5, 5, 6 ]
+// var fs = require('fs');
+//   fs.readFile('filenew.js', 'utf8', function(err, data) {
+//     if(err) throw err;
+//     // if(err){
+//     //   return console.log(err);
+//     // }
+//     // console.log('data');
+//     console.log(data);
+//     console.log(a);
+//   });
+// var arr = [4,2,4,2,4,4,4,4,4,4,4,4,2,2,4]
 // console.log(arr);
 
 // module.exports = function ThongKeSoLieu(param1){
@@ -34,8 +37,8 @@ var arrayPercentFunction = function (param1) {
   let merge = { ...object_null, ...occurrences }
   console.log('merge:', merge);
   var arrayMerge = Object.values(merge)
+  console.log('arrayMerge:', arrayMerge);
   return arrayMerge
-  // console.log('arrayMerge:', arrayMerge);
 
   // arrayPercent = Object.values(merge).map(element => {
   //   return (element / arr_length * 100).toFixed(2);
@@ -43,9 +46,9 @@ var arrayPercentFunction = function (param1) {
   // console.log('a', arrayPercent);
   // return arrayPercent;
 }
-// arrayPercentFunction(arr)
-arrayMergeTotal = arrayPercentFunction(totalArray)
-// console.log('ab', arrayMerge);
+
+// arrayMergeTotal = arrayPercentFunction(arr)
+arrayMergeTotal = arrayPercentFunction(arrayMergeTotal)
 
 // module.exports = arrayMerge;
 // export {arrayMerge};
