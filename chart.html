@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+var arrayPercent = [
+  '53.33', '1.00',
+  '13.33', '1.00',
+  '20.00', '4.67',
+  '6.67'
+]
+// var arrayPercent = require("./demoTinTuc5");
+// console.log(arrayPercent);
+// var ThongKeSoLieu = require("./demoTinTuc5");
+
+// let array = [
+//   { idtheloai: 1 }, { idtheloai: 5 }, { idtheloai: 1 },
+//   { idtheloai: 1 }, { idtheloai: 1 }, { idtheloai: 7 },
+//   { idtheloai: 1 }, { idtheloai: 1 }, { idtheloai: 3 },
+//   { idtheloai: 1 }, { idtheloai: 3 }, { idtheloai: 1 },
+//   { idtheloai: 5 }, { idtheloai: 5 }, { idtheloai: 6 }
+// ]
+// ThongKeSoLieu(array)
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "NBC algorithm"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: arrayPercent[0], label: "Pháp Luật"},
+			{y: arrayPercent[1], label: "Kinh Doanh"},
+			{y: arrayPercent[2], label: "Công nghệ"},
+			{y: arrayPercent[3], label: "Xe"},
+			{y: arrayPercent[4], label: "Thể Thao"},
+			{y: arrayPercent[5], label: "Giáo Dục"},
+			{y: arrayPercent[6], label: "Sức khoẻ"},
+			// {y: 0, label: "Others"}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- <script src="./demotintuc6.js"></script>  -->
+</body>
+</html>
