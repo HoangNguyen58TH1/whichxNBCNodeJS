@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChartJS2</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <script type="text/javascript" src="filenew.js"></script>
+  <script type="text/javascript" src="handlerChartJS.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    // var sum = massPopChart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+    console.log('arrayMergeTotal:', arrayMergeTotal);
+    var sum = arrayMergeTotal.reduce((a, b) => a + b, 0);
+    console.log('sum:', sum);
+
+
+    let massPopChart = new Chart(myChart, {
+      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Pháp Luật', 'Kinh Doanh', 'Công nghệ', 'Xe', 'Thể Thao', 'Giáo Dục', 'Sức Khoẻ'],
+        datasets:[{
+          label:'Population',
+          data:[
+          // (arrayMergeTotal[0]/sum*100).toFixed(2),
+          // (arrayMergeTotal[1]/sum*100).toFixed(2),
+          // (arrayMergeTotal[2]/sum*100).toFixed(2),
+          // (arrayMergeTotal[3]/sum*100).toFixed(2),
+          // (arrayMergeTotal[4]/sum*100).toFixed(2),
+          // (arrayMergeTotal[5]/sum*100).toFixed(2),
+          // (arrayMergeTotal[6]/sum*100).toFixed(2),
+          arrayMergeTotal[0],
+          arrayMergeTotal[1],
+          arrayMergeTotal[2],
+          arrayMergeTotal[3],
+          arrayMergeTotal[4],
+          arrayMergeTotal[5],
+          arrayMergeTotal[6],
+          ],
+
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Largest Cities In Massachusetts',
+          fontSize:25
+        },
+        legend:{
+          display:true,
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+
+  </script>
+</body>
+</html>

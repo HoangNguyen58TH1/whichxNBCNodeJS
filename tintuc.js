@@ -9,9 +9,9 @@ module.exports = (async () => {
   // await page.goto('https://tuoitre.vn/phap-luat.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/kinh-doanh.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  // await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
+  await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  await page.goto('https://tuoitre.vn/giao-duc.htm', { waitUntil: 'load', timeout: 0 });
+  // await page.goto('https://tuoitre.vn/giao-duc.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
 
   // Chạy đoạn JavaScript trong hàm này, đưa kết quả vào biến article1 và article2
@@ -42,8 +42,8 @@ module.exports = (async () => {
     let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.name-news > h3.title-news > a');
     //thethao
     // let urlTintuc = document.querySelectorAll('ul.list-news-content > li.news-item > div.txt > h3 > a');
-    urlTintuc = [...urlTintuc].slice(4,15);
-    // urlTintuc = [...urlTintuc];
+    // urlTintuc = [...urlTintuc].slice(4,15);
+    urlTintuc = [...urlTintuc];
     let articles3 = urlTintuc.map(link => ({
       url: link.getAttribute('href')
     }))
@@ -228,7 +228,7 @@ module.exports = (async () => {
   var fs = require('fs')
 
   let totalArray = articlesArray.map(e => e.idLoaiTin)
-  fs.appendFile('filenew.js', 'arrayMergeTotal = [' + totalArray + ']\n', function (err) {
+  fs.appendFile('filenew.js', 'arrayNews = [' + totalArray + ']\n', function (err) {
     if (err) throw err;
     console.log('Save');
   })

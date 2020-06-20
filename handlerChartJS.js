@@ -30,6 +30,7 @@ var arrayPercentFunction = function (param1) {
   for (let i = 0; i < arr_length; i++) {
     occurrences[param1[i]] = (occurrences[param1[i]] || 0) + 1;
   }
+  console.log(param1);
   console.log('occurrences:', occurrences);
 
   let object_null = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, }
@@ -48,7 +49,8 @@ var arrayPercentFunction = function (param1) {
 }
 
 // arrayMergeTotal = arrayPercentFunction(arr)
-arrayMergeTotal = arrayPercentFunction(arrayMergeTotal)
+arrayMergeTotal = arrayPercentFunction(arrayNews)
+arrayMergeTotal2 = arrayPercentFunction(arrayNews2)
 
 // module.exports = arrayMerge;
 // export {arrayMerge};

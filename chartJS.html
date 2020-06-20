@@ -1,48 +1,81 @@
 <!DOCTYPE html>
 <html lang="en-US">
+<head>
+  <title>ChartJS</title>
+</head>
+
 <body>
 
-<h1>My Web Page</h1>
+  <h1 style="text-align: center;">Algorithm Page</h1>
 
-<div id="piechart"></div>
+  <div id="piechart" style="text-align: center; width: 50%;  float: left;">error</div>
+  <div id="piechart2" style="text-align: center; width: 50%;  float: right;">error2</div>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="filenew.js"></script>
-<script type="text/javascript" src="handlerChartJS.js"></script>
-<!-- <script type="module" src="handlerChartJS.js"></script> -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="filenew.js"></script>
+  <script type="text/javascript" src="handlerChartJS.js"></script>
+  <!-- <script type="module" src="handlerChartJS.js"></script> -->
 
-<script type="text/javascript">
-// import arrayMergeTotal from 'handlerChartJS'
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+  <script type="text/javascript">
+    // import arrayMergeTotal from 'handlerChartJS'
+    // Load google charts
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-// var arrayMergeTotal = require('./demoTinTuc5');
-console.log('abc', arrayMergeTotal);
+    // var arrayMergeTotal = require('./demoTinTuc5');
+    console.log('abc', arrayMergeTotal);
+    console.log('abc2', arrayMergeTotal2);
 
-// var arrayMergeTotal = [8, 0, 2, 0, 3, 1, 1]
-// Draw the chart and set the chart values
-function drawChart() {
+    // var arrayMergeTotal = [8, 0, 2, 0, 3, 1, 1]
+    // Draw the chart and set the chart values
+    function drawChart() {
 
-  var data = google.visualization.arrayToDataTable([
-  ['Thể loại', 'Hours per Day'],
-  ['Pháp Luật', arrayMergeTotal[0]],
-  ['Kinh Doanh', arrayMergeTotal[1]],
-  ['Công nghệ', arrayMergeTotal[2]],
-  ['Xe', arrayMergeTotal[3]],
-  ['Thể Thao', arrayMergeTotal[4]],
-  ['Giáo Dục', arrayMergeTotal[5]],
-  ['Sức khoẻ', arrayMergeTotal[6]]
-]);
+      var data = google.visualization.arrayToDataTable([
+        // ['Thể loại', 'Number per Category'],
+        ['Thể loại', 'Số lượng mỗi loại tin'],
+        ['Pháp Luật', arrayMergeTotal[0]],
+        ['Kinh Doanh', arrayMergeTotal[1]],
+        ['Công nghệ', arrayMergeTotal[2]],
+        ['Xe', arrayMergeTotal[3]],
+        ['Thể Thao', arrayMergeTotal[4]],
+        ['Giáo Dục', arrayMergeTotal[5]],
+        ['Sức Khoẻ', arrayMergeTotal[6]]
+      ]);
+      var options = {
+        'title': 'Naive Bayes Classifier',
+        'width': 600,
+        'height': 400
+      };
+      //https://developers.google.com/chart/interactive/docs/gallery/piechart
+      // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
 
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'My Average Day', 'width':550, 'height':400};
 
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-</script>
+      var data2 = google.visualization.arrayToDataTable([
+        // ['Thể loại', 'Number per Category'],
+        ['Thể loại', 'Số lượng mỗi loại tin'],
+        ['Pháp Luật', arrayMergeTotal2[0]],
+        ['Kinh Doanh', arrayMergeTotal2[1]],
+        ['Công nghệ', arrayMergeTotal2[2]],
+        ['Xe', arrayMergeTotal2[3]],
+        ['Thể Thao', arrayMergeTotal2[4]],
+        ['Giáo Dục', arrayMergeTotal2[5]],
+        ['Sức Khoẻ', arrayMergeTotal2[6]]
+      ]);
+      var options2 = {
+        'title': 'ABC',
+        'width': 600,
+        'height': 400
+      };
+      // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+      chart2.draw(data2, options2);
+    }
+  </script>
 
 </body>
+
 </html>
