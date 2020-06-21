@@ -9,7 +9,7 @@ module.exports = (async () => {
   // await page.goto('https://tuoitre.vn/phap-luat.htm', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/kinh-doanh.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://congnghe.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
-  await page.goto('https://tuoitre.vn/xe.htm', {waitUntil: 'load', timeout: 0});
+  await page.goto('https://tuoitre.vn/xe.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://thethao.tuoitre.vn/', {waitUntil: 'load', timeout: 0});
   // await page.goto('https://tuoitre.vn/giao-duc.htm', { waitUntil: 'load', timeout: 0 });
   // await page.goto('https://tuoitre.vn/suc-khoe.htm', {waitUntil: 'load', timeout: 0});
@@ -60,10 +60,10 @@ module.exports = (async () => {
     // console.log('----------------------');
     return urlInitial
   })
-  console.log(arrayUrl);
+  // console.log(arrayUrl);
 
   //
-  var arrayTitle = [],  arrayImageUrl = [], arrayDescription = [], arrayContentTotal = [];
+  var arrayTitle = [], arrayImageUrl = [], arrayDescription = [], arrayContentTotal = [];
   for (let articles of articles3) {
     await page.goto('https://tuoitre.vn/' + articles.url, { waitUntil: 'load', timeout: 0 });
 
@@ -74,7 +74,7 @@ module.exports = (async () => {
 
       let checkElement = document.getElementsByClassName("article-title")[0];
       let titleTintuc;
-      (checkElement != undefined) ? (titleTintuc = checkElement.innerText) : ( titleTintuc = '' )
+      (checkElement != undefined) ? (titleTintuc = checkElement.innerText) : (titleTintuc = '')
       return titleTintuc;
       // let checkElement = document.getElementsByClassName("article-title")[0];
       // let titleTintuc;
@@ -119,10 +119,10 @@ module.exports = (async () => {
     });
 
     //log
-    console.log("..............................");
-    console.log(titleTintuc);
-    console.log(imageUrlTintuc);
-    console.log(descriptionTintuc);
+    // console.log("..............................");
+    // console.log(titleTintuc);
+    // console.log(imageUrlTintuc);
+    // console.log(descriptionTintuc);
 
     //handling content - convert array into string - cach1 (con cach2 nua) - cach chi dung 3 row thay vi 5 row.
     // console.log(contentTintuc);
@@ -131,7 +131,7 @@ module.exports = (async () => {
       return arrayCurrent.content
     })
     var stringsContentTinTuc = arrayContent.join('<br/><br/> ');
-    console.log(stringsContentTinTuc);
+    // console.log(stringsContentTinTuc);
 
     //add element into array
     arrayTitle.push(titleTintuc) // add tung cai string vào
@@ -141,16 +141,16 @@ module.exports = (async () => {
   }
   // console.log('testne1: ', titleTintuc); //ptu cuoi cung
   // console.log(typeof titleTintuc); //string
-  console.log('TITLE TOTAL: ', arrayTitle);
-  console.log(typeof arrayTitle);
-  console.log('IMAGE URL TOTAL: ', arrayImageUrl);
-  console.log(typeof arrayImageUrl);
-  console.log('SEARCH URL TOTAL: ', arrayUrl);
-  console.log(typeof arrayUrl);
-  console.log('DESCRIPTION TOTAL:', arrayDescription);
-  console.log(typeof arrayDescription);
-  console.log('CONTENT TOTAL:', arrayContentTotal);
-  console.log(typeof arrayContentTotal);
+  // console.log('TITLE TOTAL: ', arrayTitle);
+  // console.log(typeof arrayTitle);
+  // console.log('IMAGE URL TOTAL: ', arrayImageUrl);
+  // console.log(typeof arrayImageUrl);
+  // console.log('SEARCH URL TOTAL: ', arrayUrl);
+  // console.log(typeof arrayUrl);
+  // console.log('DESCRIPTION TOTAL:', arrayDescription);
+  // console.log(typeof arrayDescription);
+  // console.log('CONTENT TOTAL:', arrayContentTotal);
+  // console.log(typeof arrayContentTotal);
 
 
   // In ra kết quả và đóng trình duyệt
@@ -175,8 +175,8 @@ module.exports = (async () => {
   const articlesArray = [];
   for (let i = 0; i < arrayTitle.length; i++) {
     var News = category.classify(arrayTitle[i]);
-    console.log(arrayTitle[i]);
-    console.log("It is: " + i + " " + News);
+    // console.log(arrayTitle[i]);
+    // console.log("It is: " + i + " " + News);
 
     //set idtheloai
     switch (News) {
@@ -202,9 +202,9 @@ module.exports = (async () => {
         idtheloai = 7;//12/15 46,7% -----
         break;
       default:
-        console.log('chet con me m deeeeeeeeeeee');
+        // console.log('chet con me m deeeeeeeeeeee');
     }
-    console.log('idtheloai: ', idtheloai);
+    // console.log('idtheloai: ', idtheloai);
 
     var articlesObject = {
       // title: arrayTitle[i],
@@ -227,6 +227,7 @@ module.exports = (async () => {
 
   var fs = require('fs')
 
+  //handling files
   let totalArray = articlesArray.map(e => e.idLoaiTin)
   fs.appendFile('filenew.js', 'arrayNews = [' + totalArray + ']\n', function (err) {
     if (err) throw err;

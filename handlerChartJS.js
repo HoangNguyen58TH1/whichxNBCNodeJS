@@ -33,7 +33,7 @@ var arrayPercentFunction = function (param1) {
   console.log(param1);
   console.log('occurrences:', occurrences);
 
-  let object_null = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, }
+  let object_null = { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0 }
   // console.log('object_null:', object_null);
   let merge = { ...object_null, ...occurrences }
   console.log('merge:', merge);
@@ -49,8 +49,12 @@ var arrayPercentFunction = function (param1) {
 }
 
 // arrayMergeTotal = arrayPercentFunction(arr)
-arrayMergeTotal = arrayPercentFunction(arrayNews)
+arrayMergeTotal1 = arrayPercentFunction(arrayNews1)
 arrayMergeTotal2 = arrayPercentFunction(arrayNews2)
+arrayMergeTotal3 = arrayPercentFunction(arrayNews3)
+arrayMergeTotal4 = arrayPercentFunction(arrayNews4)
+arrayMergeTotal5 = arrayPercentFunction(arrayNews5)
+arrayMergeTotal6 = arrayPercentFunction(arrayNews6)
 
 // module.exports = arrayMerge;
 // export {arrayMerge};

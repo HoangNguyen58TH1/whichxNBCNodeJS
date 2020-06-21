@@ -7,6 +7,9 @@
     "image-downloader": "^4.0.1",
     "mysql": "^2.18.1",
     "puppeteer": "^3.1.0",
+    "remove-punctuation": "0.0.4",
+    "vietnamese-stopwords": "0.0.2",
+    "vntk": "^1.4.4",
     "whichx": "^2.1.2"
   },
   "devDependencies": {},
